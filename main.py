@@ -42,8 +42,8 @@ def get_memory_value(pid, base_address, offsets):
     ctypes.windll.kernel32.CloseHandle(process_handle)
     return address, value
 
-process_name = "mame.exe"
-offsets = [0x137423E8, 0x250, 0x18, 0x8ACF]
+process_name = "winkawaks1.65.exe"
+offsets = [0x00485780,0x8ACF]
 polling_interval = 0.5  # 检查内存值的时间间隔，以秒为单位
 
 pid = get_process_id(process_name)
