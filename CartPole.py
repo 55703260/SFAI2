@@ -81,7 +81,7 @@ def main():
             next_state = torch.tensor(next_state, dtype=torch.float32)
 
             # 如果游戏结束且没有完成任务，则奖励为-100
-            reward = reward if not done or t == 200 else -100
+            reward = reward if not done or t == 200 else -10 #修改ing
             # 将经验数据添加到回放缓冲区
             replay_buffer.append((state, action, reward, next_state, done))
             # 更新当前状态
@@ -90,12 +90,12 @@ def main():
             if done:
                 break
             # 如果回放缓冲区中的经验数量大于2000，开始训练模型
-            if len(replay_buffer) > 2000:
+            if len(replay_buffer) > 500:  #修改ing
                 batch = random.sample(replay_buffer, 64)
                 train_model(model, target_model, optimizer, batch)
                 # 如果epsilon大于0.01，让epsilon逐渐减小
                 if epsilon > 0.01:
-                    epsilon *= 0.999
+                    epsilon *= 0.9999 #修改ing
 
             if i_episode % 10 == 0:
                 target_model.load_state_dict(model.state_dict())
