@@ -55,6 +55,10 @@ for i_episode in range(n_episodes):
     while not done:
         # 选择行动
         count = count + 1
+        if (count) % 10000 == 0:  # 每100个回合打印一次日志
+            print("count is: {}".format(count))
+            print(q_table)  # 打印最终的Q-table
+
         if np.random.uniform(0, 1) < epsilon:
             action = np.random.choice(n_actions)  # 探索：随机选择
         else:
