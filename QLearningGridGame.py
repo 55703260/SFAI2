@@ -53,12 +53,12 @@ for i_episode in range(n_episodes):
     count = 0
 
     while not done:
-        # 选择行动
+
         count = count + 1
-        if (count) % 10000 == 0:  # 每100个回合打印一次日志
+        if (count) % 1000000 == 0:  # 每100个回合打印一次日志
             print("count is: {}".format(count))
             print(q_table)  # 打印最终的Q-table
-
+        # 选择行动
         if np.random.uniform(0, 1) < epsilon:
             action = np.random.choice(n_actions)  # 探索：随机选择
         else:
@@ -77,14 +77,15 @@ for i_episode in range(n_episodes):
 
         state = next_state  # 更新状态
 
-    if i_episode<100:  # 每100个回合打印一次日志
-        print("count is: {}".format(count))
-        print(f"Episode {i_episode + 1}: done")
-        print(q_table)  # 打印最终的Q-table
-
-    # if (i_episode + 1) % 10 == 0:  # 每100个回合打印一次日志
+    # if i_episode<100:  # 每100个回合打印一次日志
+    #     print("count is: {}".format(count))
     #     print(f"Episode {i_episode + 1}: done")
     #     print(q_table)  # 打印最终的Q-table
+
+    if (i_episode + 1) % 100 == 0:  # 每100个回合打印一次日志
+        print(f"Episode {i_episode + 1}: done")
+        print(count)
+        # print(q_table)
 
     # print(f"Episode {i_episode + 1}: done")
     # print(q_table)  # 打印最终的Q-table
